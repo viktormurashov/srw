@@ -2,4 +2,4 @@
 **Агеева Татьяна**  
 **гр. 1/194**  
 
-__srw - scientific research work__
+_P.S. srw - scientific research work_
