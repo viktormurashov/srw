@@ -1,5 +1,5 @@
 ## Магистерская работа
-**Агеева Татьяна**  
-**гр. 1/194**  
+'**Агеева Татьяна**'  
+'**гр. 1/194**'  
 
-### srw - scientific research work
+#### srw - scientific research work
