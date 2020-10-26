@@ -18,6 +18,8 @@
             "**/.git": true,
             "**/node_modules": true,
             "**/build": true,
+            "client/": true,
+            "EyeTracking/": true,
             "**/dist": true
         },
     },
