@@ -31,7 +31,7 @@ export default function ActionCard(props: ICard) {
   const classes = useStyles();
 
   const clickHandler = () => {
-    console.log(`Clicked ${props.caption}`);
+    alert(`Clicked ${props.caption}`);
   }
 
   return (
