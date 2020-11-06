@@ -1,6 +1,7 @@
 import Grid from "@material-ui/core/Grid";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import React from "react";
+import Camera from "../Camera/Camera";
 import ActionCard from "../Card/ActionCard";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -24,7 +25,9 @@ export default function Root() {
 
   return (
     <Grid container className={classes.root} spacing={2}>
-      <Grid item xs={12}/>
+      <Grid item xs={12}>
+        <Camera/>
+      </Grid>
       <Grid item xs={12}>
         <Grid container justify="center" spacing={2}>
           {items.map((value) => (
