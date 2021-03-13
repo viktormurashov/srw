@@ -30,12 +30,13 @@ const useStyles = makeStyles({
 export default function ActionCard(props: ICard) {
   const classes = useStyles();
 
-  const clickHandler = () => {
-    alert(`Clicked ${props.caption}`);
+  const speachText = (text: string) => {
+    const msg = new SpeechSynthesisUtterance(text);
+    window.speechSynthesis.speak(msg);
   }
 
   return (
-  <Card className={classes.root} onClick={clickHandler}>
+  <Card className={classes.root} onClick={() => speachText(props.caption)}>
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
           {props.caption}
