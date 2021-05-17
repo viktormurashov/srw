@@ -33,7 +33,7 @@ export default function ActionCard(props: ICard) {
   const speachText = (text: string) => {
     const msg = new SpeechSynthesisUtterance(text);
     window.speechSynthesis.speak(msg);
-  }
+  };
 
   return (
   <Card className={classes.root} onClick={() => speachText(props.caption)}>

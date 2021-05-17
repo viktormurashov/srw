@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import {
     updateCoordinates
-} from '../store/actions';
+} from '../../store/actions';
 import Cursor from './Cursor';
 
 const mapStateToProps = (appState: any) => ({

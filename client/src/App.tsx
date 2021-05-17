@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import Root from './Root/Root';
+import Registration from './components/Registration/registration';
 
 function App() {
   return (
-    <Root/>
+    <Registration/>
   );
 }
 

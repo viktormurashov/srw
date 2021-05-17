@@ -18,8 +18,12 @@ const Camera: FunctionComponent<any> = ({
       webgazer.default.begin();
       console.log(webgazer);
       await webgazer.default.setCameraConstraints(videoConstraints);
+      webgazer.default.showFaceFeedbackBox(false);
+      webgazer.default.showPredictionPoints(false);
+      // webgazer.default.showGazeDot(false);
+      // webgazer.default.showVideoPreview(true);
       webgazer.default.params.showVideoPreview = true;
-      webgazer.default.params.showPredictionPoints = false;
+      webgazer.default.params.showGazeDot = false;
       console.log("Inited");
       init2()
   };
@@ -33,9 +37,10 @@ const Camera: FunctionComponent<any> = ({
       var xprediction = data.x; // these x coordinates are relative to the viewport
       var yprediction = data.y; // these y coordinates are relative to the viewport
 
+      const { x,y } = data;
       // x = (xprediction + x) / 2;
       // y = (yprediction + y) / 2;
-      updateCoordinates({x,y});
+      updateCoordinates({ x, y });
       // setY(yprediction);
       // setX(xprediction);
       // const newElem = document.elementFromPoint(xprediction, yprediction);
@@ -53,7 +58,7 @@ const Camera: FunctionComponent<any> = ({
 
   useEffect(() => {
     init();
-  });
+  }, []);
 
   return <></>;
 }
