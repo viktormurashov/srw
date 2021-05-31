@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import Registration from './components/Registration/registration';
+import RegistrationContainer from './components/Registration/registrationContainer';
 
 function App() {
   return (
-    <Registration/>
+    <RegistrationContainer />
   );
 }
 

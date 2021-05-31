@@ -8,11 +8,10 @@ const videoConstraints = {
   facingMode: "user",
 };
 
-let x = 0;
-let y = 0;
-
 const Camera: FunctionComponent<any> = ({
+  loading,
   updateCoordinates,
+  updateLoading,
 }: any) => {
   const init = async () => {
       webgazer.default.begin();
@@ -20,39 +19,21 @@ const Camera: FunctionComponent<any> = ({
       await webgazer.default.setCameraConstraints(videoConstraints);
       webgazer.default.showFaceFeedbackBox(false);
       webgazer.default.showPredictionPoints(false);
-      // webgazer.default.showGazeDot(false);
-      // webgazer.default.showVideoPreview(true);
       webgazer.default.params.showVideoPreview = true;
       webgazer.default.params.showGazeDot = false;
-      console.log("Inited");
-      init2()
+      getCoordinates();
   };
 
-  const init2 = async () => {
+  const getCoordinates = async () => {
     await webgazer.default.setGazeListener(async function (data: any, elapsedTime: any) {
-      // console.log(await webgazer.default.getCurrentPrediction())
       if (data == null) {
         return;
+      } else if (loading) {
+        updateLoading(false);
       }
-      var xprediction = data.x; // these x coordinates are relative to the viewport
-      var yprediction = data.y; // these y coordinates are relative to the viewport
 
       const { x,y } = data;
-      // x = (xprediction + x) / 2;
-      // y = (yprediction + y) / 2;
       updateCoordinates({ x, y });
-      // setY(yprediction);
-      // setX(xprediction);
-      // const newElem = document.elementFromPoint(xprediction, yprediction);
-      // if (newElem?.id === "Туалет") {
-      //   (document.getElementById("Туалет")?.firstElementChild as any)?.click();
-      //   console.log('Туалет')
-      // }
-      // if (newElem?.id === "Спать") {
-      //   (document.getElementById("Спать")?.firstElementChild as any)?.click();
-      //   console.log('Спать')
-      // }
-      // console.log("TEST");
     });
   };
 

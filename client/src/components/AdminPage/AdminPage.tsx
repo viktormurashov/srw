@@ -1,4 +1,4 @@
-import { Button } from "@material-ui/core";
+import { Box, Button, TextField } from "@material-ui/core";
 import React, { FunctionComponent, useState } from "react";
 import sortCards from "../../utils/sort";
 
@@ -14,10 +14,27 @@ const AdminPage: FunctionComponent<any> = ({
 }) => {
     const [cardList, setCardList] = useState<Card[]>(mainCardList);
     const [currentCard, setCurrentCard] = useState<Card | null>(null);
+    const [newCardTitle, setNewCardTitle] = useState('');
+    const [createNewCardVisible, setCreateNewCardVisible] = useState(true);
 
     const saveCurrentCardOrders = () => {
         localStorage.setItem('cardsArray', JSON.stringify(cardList));
         setMainCardList(cardList);
+    };
+
+    const createNewCard = () => {
+        const newOrderAndId = cardList.length + 1;
+
+        cardList.push({ id: newOrderAndId, order: newOrderAndId, text: newCardTitle });
+
+        localStorage.setItem('cardsArray', JSON.stringify(cardList));
+        setNewCardTitle('');
+        setMainCardList(cardList);
+    };
+
+    const onChangeHandler = (e: any) => {
+        const value = e.target.value;
+        setNewCardTitle(value);
     };
 
     const dragStartHandler = (e: any, card: Card) => {
@@ -53,26 +70,47 @@ const AdminPage: FunctionComponent<any> = ({
             <Button onClick={saveCurrentCardOrders}>
                 Save current card list order
             </Button>
-            <Button onClick={saveCurrentCardOrders}>
+
+            <Button onClick={() => setCreateNewCardVisible(!createNewCardVisible)}>
                 Create
             </Button>
         </div>
-        <div style={{ display: 'flex' }}>
-            {cardList.sort(sortCards).map(card => 
-                <div
-                    id={`${card.id}`}
-                    onDragStart={(e) => dragStartHandler(e, card)}
-                    onDragLeave={(e) =>  dragEndHandler(e)}
-                    onDragEnd={(e) => dragEndHandler(e)}
-                    onDragOver={(e) => dragOverHandler(e)}
-                    onDrop={(e) => dropHandler(e, card)}
-                    className={'card'}
-                    draggable={true}
-                >
-                    {card.text}
+
+        {
+            (
+                createNewCardVisible && (
+                    <Box>
+                        <TextField
+                            label="Telegram"
+                            variant="outlined"
+                            value={newCardTitle}
+                            onChange={(event: any) => onChangeHandler(event)}
+                        />
+                        <Button onClick={createNewCard}>
+                            Save
+                        </Button>
+                    </Box>
+                    
+                )
+            ) || (
+                <div style={{ display: 'flex' }}>
+                    {cardList.sort(sortCards).map(card => 
+                        <div
+                            id={`${card.id}`}
+                            onDragStart={(e) => dragStartHandler(e, card)}
+                            onDragLeave={(e) =>  dragEndHandler(e)}
+                            onDragEnd={(e) => dragEndHandler(e)}
+                            onDragOver={(e) => dragOverHandler(e)}
+                            onDrop={(e) => dropHandler(e, card)}
+                            className={'card'}
+                            draggable={true}
+                        >
+                            {card.text}
+                        </div>
+                    )}
                 </div>
-            )}
-        </div>
+            )
+        }
     </div>;
 }
 
