@@ -9,7 +9,6 @@ function usePrevious(value: any) {
     return ref.current;
 }
 
-
 const Cursor: FunctionComponent<any> = ({
     coordinates,
 }) => {

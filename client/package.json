@@ -22,7 +22,10 @@
     "redux": "^4.0.5",
     "typescript": "^4.0.5",
     "web-vitals": "^0.2.4",
-    "webgazer": "^2.0.1"
+    "webgazer": "^2.0.1",
+    "@tensorflow-models/face-landmarks-detection": "0.0.3",
+    "@tensorflow/tfjs": "^3.6.0",
+    "react-webcam": "^5.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
