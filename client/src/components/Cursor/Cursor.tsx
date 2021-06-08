@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
 import Draggable from 'react-draggable';
+import getCursorSettingsFromLocalStorage from '../../utils/getCursorSettings';
 
 function usePrevious(value: any) {
     const ref = useRef();
@@ -9,9 +10,10 @@ function usePrevious(value: any) {
     return ref.current;
 }
 
-
 const Cursor: FunctionComponent<any> = ({
     coordinates,
+    settings,
+    updateSettings,
 }) => {
     const [currentElementId, setCurrentElementId] = useState<null | string>(null);
     const previousElementId = usePrevious(currentElementId);
@@ -52,12 +54,18 @@ const Cursor: FunctionComponent<any> = ({
     }
 
     useEffect(() => {
+        const localStorageSettings = getCursorSettingsFromLocalStorage();
+        updateSettings(localStorageSettings);
+    }, []);
+
+    useEffect(() => {
         const curElement = document?.elementFromPoint(coordinates?.x || 0, coordinates?.y || 0);
         const currentElementId = getElementId(curElement);
 
         if (currentElementId && currentElementId === previousElementId) {
             if (count > 50 && curElement) {
-                (curElement as any).click();
+                const elemForClick = document.getElementById(`${currentElementId}`);
+                (elemForClick as any).click();
                 setCount(0);
             } else {
                 setCount(count + 1);
@@ -70,6 +78,8 @@ const Cursor: FunctionComponent<any> = ({
         }
     }, [coordinates]);
 
+    const { size, color } = settings;
+
     return (
         <Draggable
             position = {{
@@ -77,7 +87,7 @@ const Cursor: FunctionComponent<any> = ({
                 y: coordinates?.y || 0 - 30,
             }}
         >
-            <div style={{width: '30px', height: '30px', borderRadius: '50%', backgroundColor: 'violet', position: 'absolute'}}>
+            <div style={{ zIndex: 2, width: size, height: size, borderRadius: '50%', backgroundColor: color, position: 'absolute' }}>
             </div>
         </Draggable>
     

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import getInitialUserInfo from "../../utils/getInitialUserInfo";
 
-import CircularProgress from '@material-ui/core/CircularProgress';
 import { Box, Button, TextField } from "@material-ui/core";
 
 import Root from "../Root/Root";
@@ -10,6 +9,7 @@ import Camera from '../Camera/cameraContainer';
 import Cursor from '../Cursor/cursorContainer';
 
 import Calibration from "../Calibration/calibration";
+import Loader from "../Loader/Loader";
 
 type User = {
   fullName: string,
@@ -54,26 +54,10 @@ export default function Registration({ loading }: any) {
 
   return (
     <>
-      <Camera />
-      <Cursor />
+      {/* <Camera />
+      <Cursor /> */}
       {(loading && (
-          <div
-            style={{
-              width: '100%',
-              height: '100%',
-              backgroundColor: 'lightgray',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              flexDirection: 'column',
-              gap: 50,
-            }}
-          >
-            <div style={{ fontSize: 30 }}>
-              Camera Loading...
-            </div>
-            <CircularProgress />
-          </div>
+          <Loader />
         )) || (
         !userExist && (
         <Box style={{
@@ -99,13 +83,13 @@ export default function Registration({ loading }: any) {
           }}>
             <TextField
               required
-              label="Имя пациента"
+              label="Имя пользователя"
               variant="outlined"
               onChange={(event) => onChangeHandler(event, 'fullName')}
             />
 
             <TextField
-              label="Имя врача"
+              label="Имя получателя"
               variant="outlined"
               onChange={(event) => onChangeHandler(event, 'doctor')}
             />

@@ -79,9 +79,10 @@ export default function Root({
         ) || (
         <Grid container className={classes.root} spacing={2}>
           <IconButton
+            id={'prevCardsButton'}
             style={{
-              height: '75px',
-              width: '75px',
+              height: '100px',
+              width: '100px',
               alignSelf: 'center',
             }}
             onClick={previousCards}
@@ -93,16 +94,17 @@ export default function Root({
             (index < currentLastItemIndex + 4 && index >= currentLastItemIndex) &&
             <Grid key={value.text} id={`${value.id}`} item>
                 <ActionCard
-                  card={{ caption: value.text }}
+                  card={{ caption: value.text, icon: value.icon }}
                   user={user}
                 />
             </Grid>
           ))}
 
           <IconButton
+            id={'nextCardsButton'}
             style={{
-              height: '75px',
-              width: '75px',
+              height: '100px',
+              width: '100px',
               alignSelf: 'center',
             }}
             onClick={nextCards}

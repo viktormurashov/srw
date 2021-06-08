@@ -15,7 +15,6 @@ const Camera: FunctionComponent<any> = ({
 }: any) => {
   const init = async () => {
       webgazer.default.begin();
-      console.log(webgazer);
       await webgazer.default.setCameraConstraints(videoConstraints);
       webgazer.default.showFaceFeedbackBox(false);
       webgazer.default.showPredictionPoints(false);
@@ -25,7 +24,7 @@ const Camera: FunctionComponent<any> = ({
   };
 
   const getCoordinates = async () => {
-    await webgazer.default.setGazeListener(async function (data: any, elapsedTime: any) {
+    await webgazer.default.setGazeListener(async function (data: { x: number; y: number; } | null) {
       if (data == null) {
         return;
       } else if (loading) {
