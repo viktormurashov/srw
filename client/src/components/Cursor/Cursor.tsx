@@ -63,10 +63,12 @@ const Cursor: FunctionComponent<any> = ({
         const currentElementId = getElementId(curElement);
 
         if (currentElementId && currentElementId === previousElementId) {
-            if (count > 50 && curElement) {
+            if (count > 50) {
                 const elemForClick = document.getElementById(`${currentElementId}`);
-                (elemForClick as any).click();
-                setCount(0);
+                if (elemForClick) {
+                    (elemForClick as any).click();
+                    setCount(0);
+                }
             } else {
                 setCount(count + 1);
             }

@@ -7,7 +7,7 @@ import {
 import Camera from './Camera';
 
 const mapStateToProps = (appState: any) => ({
-    loading: appState.loading
+    loading: appState.loading,
 });
 
 const mapDispatchToProps = {

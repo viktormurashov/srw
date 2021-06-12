@@ -16,7 +16,7 @@ const coordinates = (state: any = null, action: any) => {
     }
 };
 
-const loading = (state: boolean = false, action: any) => {
+const loading = (state: boolean = true, action: any) => {
     switch (action.type) {
         case actionTypes.UPDATE_LOADING:
             return action.payload;

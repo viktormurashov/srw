@@ -32,6 +32,7 @@ const Camera: FunctionComponent<any> = ({
       }
 
       const { x,y } = data;
+
       updateCoordinates({ x, y });
     });
   };

@@ -36,28 +36,28 @@ export enum icons {
 const getCardIcon = (icon: string) => {
   switch(icon) {
     case(icons.Food): {
-      return <LocalDiningIcon style={{width: 100, height: 100}} />
+      return <LocalDiningIcon style={{width: 150, height: 150}} />
     }
     case(icons.Toilet): {
-      return <WcIcon style={{width: 100, height: 100}} />
+      return <WcIcon style={{width: 150, height: 150}} />
     }
     case(icons.Sleep): {
-      return <AirlineSeatIndividualSuiteIcon style={{width: 100, height: 100}} />
+      return <AirlineSeatIndividualSuiteIcon style={{width: 150, height: 150}} />
     }
     case(icons.Drink): {
-      return <LocalDrinkIcon style={{width: 100, height: 100}} />
+      return <LocalDrinkIcon style={{width: 150, height: 150}} />
     }
     case(icons.Music): {
-      return <MusicNoteIcon style={{width: 100, height: 100}} />
+      return <MusicNoteIcon style={{width: 150, height: 150}} />
     }
     case(icons.Walk): {
-      return <DirectionsWalkIcon style={{width: 100, height: 100}} />
+      return <DirectionsWalkIcon style={{width: 150, height: 150}} />
     }
     case(icons.Movie): {
-      return <MovieIcon style={{width: 100, height: 100}} />
+      return <MovieIcon style={{width: 150, height: 150}} />
     }
     case(icons.Bathtub): {
-      return <BathtubIcon style={{width: 100, height: 100}} />
+      return <BathtubIcon style={{width: 150, height: 150}} />
     }
   }
 };
